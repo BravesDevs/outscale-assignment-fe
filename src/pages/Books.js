@@ -1,6 +1,22 @@
 import Book from "../components/Book";
+import { useState, useEffect } from "react";
 
 const Books = () => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch("api/books/published", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((booksData) => {
+        setBooks(booksData.data);
+      });
+  }, []);
+
   return (
     <div className="container mx-auto pb-24">
       <h1 className="text-lg font-bold my-8">Books</h1>
@@ -23,7 +39,9 @@ const Books = () => {
             </tr>
           </thead>
           <tbody className="text-center">
-            <Book />
+            {books.map((book) => (
+              <Book key={book.bookId} book={book} />
+            ))}
           </tbody>
         </table>
       </div>

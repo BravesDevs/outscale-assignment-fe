@@ -5,11 +5,11 @@ const Book = ({ book }) => {
         scope="row"
         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
       >
-        Apple MacBook Pro 17"
+        {book.bookName}
       </th>
-      <td className="px-6 py-4">Silver</td>
-      <td className="px-6 py-4">Laptop</td>
-      <td className="px-6 py-4">$2999</td>
+      <td className="px-6 py-4">{book.bookGenre}</td>
+      <td className="px-6 py-4">{book.yearPublished}</td>
+      <td className="px-6 py-4">${book.bookPrice}</td>
     </tr>
   );
 };
